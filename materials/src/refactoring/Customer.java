@@ -37,6 +37,27 @@ class Customer
 		return result;
 	}
 
+	public String htmlStatement()
+	{
+		Enumeration rentals = _rentals.elements();
+		String result = "<H1>ќперации аренды дл€ <EM>" + getName()
+				+ "</EM></H1><P>\n";
+		while (rentals.hasMoreElements())
+		{
+			Rental each = (Rental) rentals.nextElement();
+			// показать результаты по каждой аренде
+			result += each.getMovie().getTitle() + ": "
+					+ String.valueOf(each.getCharge()) + "<BR>\n";
+		}
+		// добавить нижний колонтитул
+		result += "<P>¬аша задолженность составл€ет <EM>"
+				+ String.valueOf(getTotalCharge()) + "</EM><P>\n";
+		result += "Ќа этой аренде вы заработали <EM>"
+				+ String.valueOf(getTotalFrequentRenterPoints())
+				+ "</EM> очков за активность<P>";
+		return result;
+	}
+
 	private double getTotalCharge()
 	{
 		double result = 0;

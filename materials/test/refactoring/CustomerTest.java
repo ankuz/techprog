@@ -47,5 +47,31 @@ public class CustomerTest extends TestCase
 				"Учет аренды для CustomerName\n	MovieName	21.0\nСумма задолженности составляет 21.0\nВы заработали 2 очков за активность",
 				customer.statement());
 	}
+	
+	@Test
+	public void testHTMLStatement()
+	{
+		assertEquals(
+				"<H1>Операции аренды для <EM>CustomerName</EM></H1><P>\nMovieName: 0.0<BR>\n<P>Ваша задолженность составляет <EM>0.0</EM><P>\nНа этой аренде вы заработали <EM>1</EM> очков за активность<P>",
+				customer.htmlStatement());
+	}
+	
+	@Test
+	public void testRegularMovieHTMLStatement()
+	{
+		movie.setPriceCode(Movie.REGULAR);
+		assertEquals(
+				"<H1>Операции аренды для <EM>CustomerName</EM></H1><P>\nMovieName: 9.5<BR>\n<P>Ваша задолженность составляет <EM>9.5</EM><P>\nНа этой аренде вы заработали <EM>1</EM> очков за активность<P>",
+				customer.htmlStatement());
+	}
+	
+	@Test
+	public void testNewReleaseMovieHTMLStatement()
+	{
+		movie.setPriceCode(Movie.NEW_RELEASE);
+		assertEquals(
+				"<H1>Операции аренды для <EM>CustomerName</EM></H1><P>\nMovieName: 21.0<BR>\n<P>Ваша задолженность составляет <EM>21.0</EM><P>\nНа этой аренде вы заработали <EM>2</EM> очков за активность<P>",
+				customer.htmlStatement());
+	}
 
 }
