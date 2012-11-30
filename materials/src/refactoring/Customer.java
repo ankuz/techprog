@@ -28,12 +28,8 @@ class Customer
 		{
 			Rental each = (Rental) rentals.nextElement();
 
-			// добавить очки для активного арендатора
-			frequentRenterPoints++;
-			// бонус за аренду новинки на два дня
-			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-					&& each.getDaysRented() > 1)
-				frequentRenterPoints++;
+			frequentRenterPoints += each.getFrequentRenterPoints();
+			
 			// показать результаты для этой аренды
 			result += "\t" + each.getMovie().getTitle() + "\t"
 					+ String.valueOf(each.getCharge()) + "\n";

@@ -42,4 +42,17 @@ class Rental
 	{
 		return _movie;
 	}
+
+	public int getFrequentRenterPoints()
+	{
+		int iResult = 0;
+		// добавить очки для активного арендатора
+		iResult++;
+		// бонус за аренду новинки на два дня
+		if ((getMovie().getPriceCode() == Movie.NEW_RELEASE)
+				&& getDaysRented() > 1)
+			iResult++;
+
+		return iResult;
+	}
 }

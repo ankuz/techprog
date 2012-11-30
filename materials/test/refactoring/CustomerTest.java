@@ -18,12 +18,13 @@ public class CustomerTest extends TestCase
 		rental = new Rental(movie, 7);
 		
 		customer = new Customer("CustomerName");
+		
+		customer.addRental(rental);
 	}
 	
 	@Test
 	public void testStatement()
 	{
-		customer.addRental(rental);
 		assertEquals(
 				"Учет аренды для CustomerName\n	MovieName	0.0\nСумма задолженности составляет 0.0\nВы заработали 1 очков за активность",
 				customer.statement());
@@ -33,9 +34,17 @@ public class CustomerTest extends TestCase
 	public void testRegularMovieStatement()
 	{
 		movie.setPriceCode(Movie.REGULAR);
-		customer.addRental(rental);
 		assertEquals(
 				"Учет аренды для CustomerName\n	MovieName	9.5\nСумма задолженности составляет 9.5\nВы заработали 1 очков за активность",
+				customer.statement());
+	}
+	
+	@Test
+	public void testNewReleaseMovieStatement()
+	{
+		movie.setPriceCode(Movie.NEW_RELEASE);
+		assertEquals(
+				"Учет аренды для CustomerName\n	MovieName	21.0\nСумма задолженности составляет 21.0\nВы заработали 2 очков за активность",
 				customer.statement());
 	}
 
