@@ -26,9 +26,7 @@ class Customer
 		String result = "Учет аренды для " + getName() + "\n";
 		while (rentals.hasMoreElements())
 		{
-			double thisAmount = 0;
 			Rental each = (Rental) rentals.nextElement();
-			thisAmount = each.getCharge();
 
 			// добавить очки для активного арендатора
 			frequentRenterPoints++;
@@ -38,8 +36,8 @@ class Customer
 				frequentRenterPoints++;
 			// показать результаты для этой аренды
 			result += "\t" + each.getMovie().getTitle() + "\t"
-					+ String.valueOf(thisAmount) + "\n";
-			totalAmount += thisAmount;
+					+ String.valueOf(each.getCharge()) + "\n";
+			totalAmount += each.getCharge();
 		}
 		// добавить нижний колонтитул
 		result += "Сумма задолженности составляет "
